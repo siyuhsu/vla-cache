@@ -1,5 +1,5 @@
 # VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation
-Official implementation of paper "[VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation](https://arxiv.org/abs/2502.02175)" (VLA-Cache), Under Review.  
+Official implementation of paper "[VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation](https://arxiv.org/abs/2502.02175)".  
 By Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, Tao Huang, Chang Xu.
 
 :fire: **VLA-Cache: A training-free and plug-and-play approach to VLA acceleration.**
@@ -17,7 +17,7 @@ Vision-Language-Action (VLA) model can process instructions and visual perceptio
 
 
 <p align='center'>
-<img src='./assests/method.png' alt='mask' width='1200px'>
+<img src='./assests/method.png' alt='mask' width='800px'>
 </p>
 
 </details>
