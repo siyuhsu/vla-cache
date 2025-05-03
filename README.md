@@ -1,8 +1,6 @@
 # VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation
 [![Project Page](https://img.shields.io/badge/Project-Page-Green)](https://vla-cache.github.io/)
 [![arXiv](https://img.shields.io/badge/Paper-Arxiv-red)](https://arxiv.org/abs/2502.02175)
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsiyuhsu%2Fvla-cache&count_bg=%23DF0D21&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitor&edge_flat=false)](https://hits.seeyoufarm.com)
-[![GitHub Stars](https://img.shields.io/github/stars/siyuhsu/vla-cache?style=social)](https://github.com/siyuhsu/vla-cache/stargazers)
 [![License](https://img.shields.io/badge/License-Apache%202.0-g.svg)](LICENSE)
 
 
@@ -14,7 +12,7 @@ By Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, Tao Huang, Chang Xu.
 
 
 ## Updates
-* 10 Mar, 2025: We are planing to release the code.
+* 1 May, 2025: We are working hard on organising the code, and will be releasing it at the end of May.
 
 ## Overview
 <details>
