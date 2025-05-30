@@ -11,7 +11,7 @@ Evaluation
 
 ## Setup
 
-Set up a conda environment with LIBERO environment(follow instructions of OpenVLA-OFT in [SETUP.md](SETUP.md) and [LIBERO.md](LIBERO.md)).
+Set up a conda environment with LIBERO environment(follow instructions of OpenVLA-OFT in [SETUP.md](openvla-oft/SETUP.md) and [LIBERO.md](openvla-oft/LIBERO.md)).
 
 Install transformers:
 
