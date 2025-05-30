@@ -1,6 +1,0 @@
-[submodule "src/transformers"]
-	path = src/transformers
-	url = https://github.com/huggingface/transformers.git
-[submodule "src/openvla-oft"]
-	path = src/openvla-oft
-	url = https://github.com/moojink/openvla-oft
