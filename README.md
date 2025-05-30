@@ -12,7 +12,8 @@ By Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, Tao Huang, Chang Xu.
 
 
 ## Updates
-* 1 May, 2025: We are working hard on organising the code, and will be releasing it at the end of May.
+
+* **May 29, 2025**: Code for OpenVLA-OFT is available (see instructions in [README_VLA_Cache.md](src/README_VLA_Cache.md)).  
 
 ## Overview
 <details>
