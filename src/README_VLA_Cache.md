@@ -23,17 +23,18 @@ Implementation
 
 Set up a conda environment with LIBERO environment(follow instructions of OpenVLA-OFT in [SETUP.md](openvla-oft/SETUP.md) and [LIBERO.md](openvla-oft/LIBERO.md)).
 
-1. Install transformers:
 
-```bash
-cd src/transformers
-pip install -e .
-```
-
-2. Install OpenVLA-OFT:
+1. Install OpenVLA-OFT from this project:
 
 ```bash
 cd src/openvla-oft
+pip install -e .
+```
+
+2. Install transformers from this project:
+
+```bash
+cd src/transformers
 pip install -e .
 ```
 
@@ -44,11 +45,11 @@ cd src/openvla-oft
 bash vla_cache_scripts/download_local_oft.sh
 ```
 
-NOTE: Make sure to follow the above steps to install openvla-oft and transformers, and download the hugging face model, otherwise the VLA-Cache implementation will not be effective.
+NOTE: Check the installation paths of both two packages (openvla-oft and transformers) using `pip list`. Make sure the paths are installed from this project, otherwise the VLA-Cache implementation will not be effective. 
 
 ## VLA-Cache Evaluations Example
 
-Run LIBERO-Spatial benchmark with VLA-Cache inference mode (Make sure the checkpoints in `src/openvla-oft/checkpoints`):
+Run LIBERO-Spatial benchmark with VLA-Cache inference mode (Make sure the checkpoints in `src/openvla-oft/checkpoints`. Don't load models from defalt huggingface cache path):
 
 ```bash
 # Launch LIBERO-Spatial evals with VLA-Cache
@@ -74,7 +75,7 @@ python experiments/robot/libero/run_libero_eval.py \
 
 # Launch LIBERO-Long evals with VLA-Cache
 python experiments/robot/libero/run_libero_eval.py \
-  --pretrained_checkpoint checkpoints/openvla-7b-oft-finetuned-libero-10 \
+  --pretrained_checkpoint checkpoints/openvla-7b-oft-finetuned-libero-10 download to local first\
   --task_suite_name libero_10  \
   --use_vla_cache True \
 ```
