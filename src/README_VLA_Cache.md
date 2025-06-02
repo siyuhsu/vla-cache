@@ -8,31 +8,43 @@ Evaluation
   * `run_oft_without_vla_cache.sh`: Disable VLA-Cache eval utils
   * `download_local_oft.sh`: Download checkpoints locally
 
+Implementation
+
+* `OpenVLA-OFT`: Inference core implementation
+  * `src/openvla-oft/prismatic/extern/hf/modeling_prismatic.py`: Modified the inference process
+
+* `transformers`: Dynamic cache update and LLAMA modelling implementation
+  * `src/transformers/src/transformers/cache_utils.py`: Modified DynamicCache() class
+  * `src/transformers/src/transformers/models/llama/modeling_llama.py`: Modified LlamaModel forward() function
+
+
 
 ## Setup
 
 Set up a conda environment with LIBERO environment(follow instructions of OpenVLA-OFT in [SETUP.md](openvla-oft/SETUP.md) and [LIBERO.md](openvla-oft/LIBERO.md)).
 
-Install transformers:
+1. Install transformers:
 
 ```bash
 cd src/transformers
 pip install -e .
 ```
 
-Install OpenVLA-OFT:
+2. Install OpenVLA-OFT:
 
 ```bash
 cd src/openvla-oft
 pip install -e .
 ```
 
-Download OpenVLA-OFT checkpoints for LIBERO locally:
+3. Download OpenVLA-OFT checkpoints for LIBERO locally:
 
 ```bash
 cd src/openvla-oft
 bash vla_cache_scripts/download_local_oft.sh
 ```
+
+NOTE: Make sure to follow the above steps to install openvla-oft and transformers, and download the hugging face model, otherwise the VLA-Cache implementation will not be effective.
 
 ## VLA-Cache Evaluations Example
 
