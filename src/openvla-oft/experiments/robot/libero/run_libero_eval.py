@@ -315,14 +315,13 @@ def run_episode(
     replay_images_heatmap = []
     replay_images_wrist_heatmap = []
     prev_img = None
-    prev_attn = None
     last_caches = None
     
     
     max_steps = TASK_MAX_STEPS[cfg.task_suite_name]
     episode_time = 0
     episode_step = 0
-    episode_task_relevant_tokens = 0
+    episode_task_static_tokens = 0
     
     # Run episode
     success = False
@@ -349,7 +348,6 @@ def run_episode(
                 prev_img_wrist = replay_images_wrist[-1]
             
             observation["prev_images"] = [prev_img, prev_img_wrist]
-            observation["prev_attn"] = prev_attn
 
             # If action queue is empty, requery model
             if len(action_queue) == 0:
@@ -368,7 +366,7 @@ def run_episode(
                 )
                 episode_time += metrics["time_elapsed"]
                 episode_step += 1
-                episode_task_relevant_tokens += metrics['num_significant_tokens']
+                episode_task_static_tokens += metrics['num_static_tokens']
                 
                 action_queue.extend(actions)
                 replay_images_heatmap.append(result_image[0])
@@ -394,7 +392,7 @@ def run_episode(
     eposode_metrics = {
         "episode_time": episode_time,
         "episode_step": episode_step,
-        "episode_task_relevant_tokens": episode_task_relevant_tokens
+        "episode_task_static_tokens": episode_task_static_tokens
     }
 
     return success, replay_images_heatmap, replay_images_wrist_heatmap, eposode_metrics
@@ -428,7 +426,7 @@ def run_task(
     task_episodes, task_successes = 0, 0
     total_steps = 0
     total_time = 0
-    total_task_relevant_tokens = 0
+    total_task_static_tokens = 0
     
     for episode_idx in tqdm.tqdm(range(cfg.num_trials_per_task)):
         log_message(f"\nTask: {task_description}", log_file)
@@ -469,9 +467,9 @@ def run_task(
         
         total_steps += eposode_metrics["episode_step"]
         total_time += eposode_metrics["episode_time"]
-        total_task_relevant_tokens += eposode_metrics["episode_task_relevant_tokens"]
+        total_task_static_tokens += eposode_metrics["episode_task_static_tokens"]
         
-        print(f"Average time per step: {(total_time/total_steps)*1000:.4f} ms, Control Frequency: {total_steps / total_time * 8:.2f} Hz, Token Reusing Ratio: {(total_task_relevant_tokens/total_steps/512*100):.2f} %")
+        print(f"Average time per step: {(total_time/total_steps)*1000:.4f} ms, Control Frequency: {total_steps / total_time * 8:.2f} Hz, Token Reusing Ratio: {(total_task_static_tokens/total_steps/512*100):.2f} %")
 
         # Update counters
         task_episodes += 1

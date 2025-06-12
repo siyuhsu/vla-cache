@@ -746,7 +746,6 @@ def get_vla_action(
     Returns:
         List[np.ndarray]: Predicted actions
     """
-<<<<<<< HEAD
     # Collect all input images
     all_images = [obs["full_image"]]
     if cfg.num_images_in_input > 1:
@@ -856,64 +855,6 @@ def get_vla_action(
     action_list = [action[i] for i in range(min(len(action), cfg.num_open_loop_steps))]
     result_image = [np.array(image) for image in result_image]
     return action_list, last_caches, result_image, metrics
-=======
-    with torch.inference_mode():
-
-        # Collect all input images
-        all_images = [obs["full_image"]]
-        if cfg.num_images_in_input > 1:
-            all_images.extend([obs[k] for k in obs.keys() if "wrist" in k])
-
-        # Process images
-        all_images = prepare_images_for_vla(all_images, cfg)
-
-        # Extract primary image and additional images
-        primary_image = all_images.pop(0)
-
-        # Build VLA prompt
-        prompt = f"In: What action should the robot take to {task_label.lower()}?\nOut:"
-
-        # Process primary image
-        inputs = processor(prompt, primary_image).to(DEVICE, dtype=torch.bfloat16)
-
-        # Process additional wrist images if any
-        if all_images:
-            all_wrist_inputs = [
-                processor(prompt, image_wrist).to(DEVICE, dtype=torch.bfloat16) for image_wrist in all_images
-            ]
-            # Concatenate all images
-            primary_pixel_values = inputs["pixel_values"]
-            all_wrist_pixel_values = [wrist_inputs["pixel_values"] for wrist_inputs in all_wrist_inputs]
-            inputs["pixel_values"] = torch.cat([primary_pixel_values] + all_wrist_pixel_values, dim=1)
-
-        # Process proprioception data if used
-        proprio = None
-        if cfg.use_proprio:
-            proprio = obs["state"]
-            proprio_norm_stats = vla.norm_stats[cfg.unnorm_key]["proprio"]
-            obs["state"] = normalize_proprio(proprio, proprio_norm_stats)
-            proprio = obs["state"]
-
-        # Generate action
-        if action_head is None:
-            # Standard VLA output (single-image inputs, discrete actions)
-            action, _ = vla.predict_action(**inputs, unnorm_key=cfg.unnorm_key, do_sample=False)
-        else:
-            # Custom action head for continuous actions
-            action, _ = vla.predict_action(
-                **inputs,
-                unnorm_key=cfg.unnorm_key,
-                do_sample=False,
-                proprio=proprio,
-                proprio_projector=proprio_projector,
-                noisy_action_projector=noisy_action_projector,
-                action_head=action_head,
-                use_film=use_film,
-            )
-
-    # Return action chunk as list of actions
-    return [action[i] for i in range(len(action))]
->>>>>>> 213c5ff8d6e9673885d7e4dd6f2ce73b5d8a45db
 
 
 def get_action_from_server(

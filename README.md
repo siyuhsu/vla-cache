@@ -13,7 +13,8 @@ By Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, Tao Huang, Chang Xu.
 
 ## Updates
 
-* **May 29, 2025**: Code for OpenVLA-OFT is available (see instructions in [README_VLA_Cache.md](src/README_VLA_Cache.md)).  
+* **Jun 12, 2025**: Code for OpenVLA is available (see instructions in [src/openvla/README_VLA_Cache.md](src/openvla/README_VLA_Cache.md)).  
+* **May 29, 2025**: Code for OpenVLA-OFT is available (see instructions in [src/openvla-oft/README_VLA_Cache.md](src/openvla-oft/README_VLA_Cache.md)).  
 
 ## Overview
 <details>
