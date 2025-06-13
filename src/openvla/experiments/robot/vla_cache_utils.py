@@ -148,7 +148,7 @@ def visualize_significant_patches_mask(image, patch_ids, patch_size=14, alpha=0.
     overlay_group = [(patch_ids, color)]
     return draw_patches_overlay(image, overlay_group, patch_size, alpha)
 
-def task_relevant_selection(multihead_attention, image, significant_patches, top_k=100):
+def task_relevant_selection(multihead_attention, image, significant_patches, top_k=120):
     """
     Highlights and compares significant patches with top attention patches.
     """
