@@ -392,7 +392,7 @@ def get_vla_action(cfg, vla, processor, base_vla_name, obs, task_label, unnorm_k
         print(">> VLA-Cache inference mode")
         # Step 1: Identify visually stable patches across frames
         if prompt_cache is not None:
-            stable_patches = find_static_patches(image, prev_image, top_k=150)
+            stable_patches = find_static_patches(image, prev_image, top_k=120)
 
         # Step 2: Use prior attention to filter out task-relevant tokens
         if prev_attn is not None:
