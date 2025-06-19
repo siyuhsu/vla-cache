@@ -1,40 +1,127 @@
-# VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation
-[![Project Page](https://img.shields.io/badge/Project-Page-Green)](https://vla-cache.github.io/)
-[![arXiv](https://img.shields.io/badge/Paper-Arxiv-red)](https://arxiv.org/abs/2502.02175)
-[![License](https://img.shields.io/badge/License-Apache%202.0-g.svg)](LICENSE)
+# <div align="center">VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation</div>
 
+<div align="center">
 
+[![Project Page](https://img.shields.io/badge/Project-Page-Green)](https://vla-cache.github.io/) [![arXiv](https://img.shields.io/badge/Paper-Arxiv-red)](https://arxiv.org/abs/2502.02175) [![License](https://img.shields.io/badge/License-Apache%202.0-g.svg)](LICENSE)
 
-Official implementation of paper "[VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation](https://arxiv.org/abs/2502.02175)".  
-By Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, Tao Huang, Chang Xu.
+**Siyu Xu, Yunke Wang, Chenghao Xia, Dihao Zhu, Tao Huang, Chang Xu**
 
-:fire: **VLA-Cache: A training-free and plug-and-play approach to VLA acceleration.**
+</div>
 
+<div align="center">
+  <strong>🔥 VLA-Cache is a training-free, plug-and-play solution for accelerating vision-language-action models.</strong>
+</div>
 
-## Updates
+---
 
-* **Jun 12, 2025**: Code for OpenVLA is available (see instructions in [src/openvla/README_VLA_Cache.md](src/openvla/README_VLA_Cache.md)).  
-* **May 29, 2025**: Code for OpenVLA-OFT is available (see instructions in [src/openvla-oft/README_VLA_Cache.md](src/openvla-oft/README_VLA_Cache.md)).  
+## 📌 News
 
-## Overview
-<details>
+- **[2025/06/12]**: Code for OpenVLA is available ([OpenVLA README](src/openvla/README_VLA_Cache.md))  
+- **[2025/05/29]**: Code for OpenVLA-OFT is released ([OpenVLA-OFT README](src/openvla-oft/README_VLA_Cache.md))
 
-### Abstract
+---
 
-Vision-Language-Action (VLA) model can process instructions and visual perception to directly generate actions as output in an end-to-end fashion due to its strong multi-modal reasoning capabilities. While the performance of VLA models is promising, their computational cost can be substantial. This raises challenge for applying them on robotics tasks, which requires real-time decision-making to respond quickly to environmental changes. Since robotic control involves sequential decision-making, the visual input often exhibits minimal variation between successive steps. A natural idea is to reuse the computational results of unchanged visual tokens from the last step. Motivated by this idea, we propose VLA-Cache, an efficient vision-language-action model. VLA-Cache incorporates a token-selection mechanism that compares the visual input at each step with the input from the previous step, adaptively identifying visual tokens with minimal changes. The computational results for these unchanged tokens are then reused in subsequent steps via KV-cache, thereby significantly improving the efficiency of the VLA-Cache model. Experimental results on both simulation (e.g., LIBERO benchmark and SIMPLER) and real-world robot valid VLA-Cache can achieve practical acceleration with minimal sacrifice in success rate.
+## 🎯 Overview
 
+Vision-Language-Action (VLA) models can map multi-modal inputs (vision + language) to actions for robotic tasks in an end-to-end manner. However, due to the high frame rate and spatial complexity in robotic control, VLA inference can be computationally expensive.
+
+**VLA-Cache** introduces a lightweight and effective caching mechanism by detecting unchanged visual tokens between frames and reusing their key-value computations. This leads to substantial speed-up with minimal accuracy loss.
 
 <p align='center'>
-<img src='./assests/method.png' alt='mask' width='800px'>
+<img src='./assests/method.png' alt='method' width='800px'>
 </p>
 
-</details>
+---
 
-## License  
-This project is released under the [Apache 2.0 license](LICENSE).
+## 🛠️ Installation
 
-## Citation  
+### 1. Clone the repository
+```bash
+git clone https://github.com/siyuhsu/vla-cache.git
+cd vla-cache
 ```
+
+### 2. Set up environments
+Follow the [OpenVLA](src/openvla/README.md) and [OpenVLA-OFT](src/openvla-oft/README.md) setup instructions.
+
+#### For OpenVLA:
+```bash
+conda activate openvla
+cd src/openvla
+pip install -e .
+```
+
+#### For OpenVLA-OFT:
+```bash
+conda activate openvla-oft
+cd src/openvla-oft
+pip install -e .
+```
+
+---
+
+## 🚀 VLA-Cache Evaluation
+
+### <a name="openvla-evaluation"></a>🔧 OpenVLA Evaluation
+
+#### ✅ Download pretrained checkpoint:
+```bash
+conda activate openvla
+cd src/openvla
+python vla_cache_scripts/download_model_local.py \
+  --model_id openvla/openvla-7b-finetuned-libero-spatial
+```
+
+#### ▶️ Run evaluation with VLA-Cache:
+```bash
+python experiments/robot/libero/run_libero_eval.py \
+  --pretrained_checkpoint checkpoints/openvla-7b-finetuned-libero-spatial \
+  --task_suite_name libero_spatial \
+  --use_vla_cache True
+```
+
+#### ❌ Run baseline without VLA-Cache:
+```bash
+python experiments/robot/libero/run_libero_eval.py \
+  --pretrained_checkpoint checkpoints/openvla-7b-finetuned-libero-spatial \
+  --task_suite_name libero_spatial \
+  --use_vla_cache False
+```
+
+---
+
+### <a name="openvla-oft-evaluation"></a>🔧 OpenVLA-OFT Evaluation
+
+#### ✅ Download pretrained checkpoint:
+```bash
+conda activate openvla-oft
+cd src/openvla-oft
+python vla_cache_scripts/download_model_local.py \
+  --model_id moojink/openvla-7b-oft-finetuned-libero-spatial
+```
+
+#### ▶️ Run evaluation with VLA-Cache:
+```bash
+python experiments/robot/libero/run_libero_eval.py \
+  --pretrained_checkpoint checkpoints/openvla-7b-oft-finetuned-libero-spatial \
+  --task_suite_name libero_spatial \
+  --use_vla_cache True
+```
+
+#### ❌ Run baseline without VLA-Cache:
+```bash
+python experiments/robot/libero/run_libero_eval.py \
+  --pretrained_checkpoint checkpoints/openvla-7b-oft-finetuned-libero-spatial \
+  --task_suite_name libero_spatial \
+  --use_vla_cache False
+```
+
+---
+
+## 📖 Citation
+
+If you find this work useful, please cite:
+```bibtex
 @article{xu2025vla,
   title={VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation},
   author={Xu, Siyu and Wang, Yunke and Xia, Chenghao and Zhu, Dihao and Huang, Tao and Xu, Chang},
@@ -42,3 +129,15 @@ This project is released under the [Apache 2.0 license](LICENSE).
   year={2025}
 }
 ```
+
+---
+
+## 🤝 Acknowledgements
+
+We build on the amazing work of [OpenVLA](https://github.com/openvla/openvla), [OpenVLA-OFT](https://github.com/moojink/OpenVLA-OFT), and [Huggingface Transformers](https://github.com/huggingface/transformers).
+
+---
+
+## 📜 License
+
+This project is licensed under the [Apache 2.0 License](LICENSE).
