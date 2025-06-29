@@ -49,6 +49,7 @@ dependencies = [
     "torchaudio==2.2.0",
     "transformers @ git+https://github.com/siyuhsu/transformers.git@vla-cache-openvla",  # IMPORTANT: Use this fork for vla-cache support
     "wandb",
+    "scikit-image==0.25.0",
     "tensorflow==2.15.0",
     "tensorflow_datasets==4.9.3",
     "tensorflow_graphics==2021.12.3",
