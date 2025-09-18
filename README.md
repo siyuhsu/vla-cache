@@ -15,9 +15,9 @@
 ---
 
 ## 📌 News
-
-- **[2025/06/12]**: Code for OpenVLA is available ([OpenVLA README](src/openvla/README_VLA_Cache.md))  
-- **[2025/05/29]**: Code for OpenVLA-OFT is released ([OpenVLA-OFT README](src/openvla-oft/README_VLA_Cache.md))
+🔥 - **[2025/09/18]** Our VLA-Cache is accepted by **NeurIPS 2025**!
+🔥 - **[2025/06/12]**: Code for OpenVLA is available ([OpenVLA README](src/openvla/README_VLA_Cache.md))  
+🔥 - **[2025/05/29]**: Code for OpenVLA-OFT is released ([OpenVLA-OFT README](src/openvla-oft/README_VLA_Cache.md))
 
 ---
 
