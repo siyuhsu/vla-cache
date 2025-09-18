@@ -849,7 +849,8 @@ def get_vla_action(
     end_time = time.time()
     time_elapsed = end_time - start_time
     metrics.update({"time_elapsed": time_elapsed})
-    metrics.update({"num_static_tokens": len(final_static_token_indices) if mask_indices is not None else 0})
+    metrics.update({"num_static_tokens_primary": len(remaining_static_tokens_primary) if mask_indices is not None else 0})
+    metrics.update({"num_static_tokens_wrist": len(remaining_static_tokens_wrist) if mask_indices is not None else 0})
     
     # Extract subset of actions for open loop steps
     action_list = [action[i] for i in range(min(len(action), cfg.num_open_loop_steps))]
