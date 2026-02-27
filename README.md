@@ -1,4 +1,4 @@
-# <div align="center">VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation</div>
+# <div align="center">VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching</div>
 
 <div align="center">
 
@@ -125,7 +125,7 @@ python experiments/robot/libero/run_libero_eval.py \
 If you find this work useful, please cite:
 ```bibtex
 @article{xu2025vla,
-  title={VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation},
+  title={VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching},
   author={Xu, Siyu and Wang, Yunke and Xia, Chenghao and Zhu, Dihao and Huang, Tao and Xu, Chang},
   journal={arXiv preprint arXiv:2502.02175},
   year={2025}
